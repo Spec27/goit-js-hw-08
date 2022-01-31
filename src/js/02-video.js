@@ -1,5 +1,6 @@
 import '../css/common.css';
-import { throttle } from 'lodash';
+
+import throttle from 'lodash.throttle';
 
 const TIME_KEY = 'videoplayer-current-time';
 const iframe = document.querySelector('iframe');
@@ -13,14 +14,15 @@ const onPlay = function (data) {
 player.on('timeupdate', throttle(onPlay, 1000));
 
 function reload() {
-  const paused = JSON.parse(localStorage.getItem(TIME_KEY))['seconds'];
-  if (JSON.parse(localStorage.getItem(TIME_KEY)) === 0) {
+  if (JSON.parse(localStorage.getItem(TIME_KEY)) === null) {
     return;
   }
+  const paused = JSON.parse(localStorage.getItem(TIME_KEY));
+  player.setCurrentTime(paused.seconds);
 
   if (paused) {
     player
-      .setCurrentTime(paused)
+      .setCurrentTime(paused.second)
       .then(function (seconds) {})
       .catch(function (error) {
         switch (error.name) {

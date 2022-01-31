@@ -1,4 +1,4 @@
-import { throttle } from 'lodash';
+import throttle from 'lodash.throttle';
 import '../css/common.css';
 
 const VAULT_KEY = 'feedback-form-state';
@@ -28,7 +28,7 @@ function onFormSubmit(event) {
 
 function saveTheValueOfTheFieldOnReload() {
   const savedValueForm = JSON.parse(localStorage.getItem(VAULT_KEY));
-  if (savedValueForm === '') {
+  if (savedValueForm === null) {
     return;
   }
   messageEll.value = savedValueForm['message'];

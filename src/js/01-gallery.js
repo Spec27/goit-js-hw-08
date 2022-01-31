@@ -10,18 +10,18 @@ import SimpleLightbox from 'simplelightbox';
 const createGallery = document.querySelector('.gallery');
 const galleryMarcup = createGalleryCards(galleryItems);
 createGallery.insertAdjacentHTML('beforeend', galleryMarcup);
-createGallery.addEventListener('click', flippingThroughImages);
 
 function createGalleryCards(galleryItems) {
   return sampleTpl(galleryItems);
 }
 
-function flippingThroughImages(event) {
+createGallery.addEventListener('click', event => {
   event.preventDefault();
   if (!event.target.classList.contains('gallery__image')) {
     return;
   }
-}
+});
+
 const lightbox = new SimpleLightbox('.gallery a', {
   scrollZoom: true,
   captionDelay: 250,
