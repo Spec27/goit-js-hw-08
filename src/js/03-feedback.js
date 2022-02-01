@@ -31,7 +31,7 @@ function saveTheValueOfTheFieldOnReload() {
   if (savedValueForm === null) {
     return;
   }
-  messageEll.value = savedValueForm['message'];
-  emailEll.value = savedValueForm['email'];
+  messageEll.value = savedValueForm.message || '';
+  emailEll.value = savedValueForm.email || '';
 }
 saveTheValueOfTheFieldOnReload();
